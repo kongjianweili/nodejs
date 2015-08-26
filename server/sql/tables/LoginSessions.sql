@@ -1,0 +1,6 @@
+
+CREATE TABLE [Sessions] (
+	[sid] VARCHAR(255) NOT NULL PRIMARY KEY,
+	[session] VARCHAR(MAX) NOT NULL,
+	[expires] DATETIME NOT NULL
+);

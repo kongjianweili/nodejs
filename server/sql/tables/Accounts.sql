@@ -1,0 +1,10 @@
+CREATE TABLE dbo.Accounts (
+	AccountNo INT	PRIMARY KEY IDENTITY(1,1),
+	Account	VARCHAR(32) NOT NULL,
+	AccountName	VARCHAR(32) NOT NULL,
+	EncPw	VARBINARY(64) NOT NULL,
+	Salt	VARCHAR(16) NOT NULL,
+	[Level]		INT	DEFAULT 0,
+	REG_DT	DATETIME DEFAULT getdate(),
+	LastModified	DATETIME DEFAULT getdate()
+	);

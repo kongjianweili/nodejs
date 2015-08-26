@@ -1,0 +1,86 @@
+<html ng-app="myApp">
+<head>
+	<meta charset="utf8">
+	<script type="text/javascript" src="/scripts/jquery-1.11.3.min.js"></script>
+	<script type="text/javascript" src="/scripts/angular.min.js"></script>
+    <script type="text/javascript" src="/scripts/angular-route.min.js"></script>
+	<script type="text/javascript" src="/scripts/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/scripts/jquery.cookie.js"></script>
+    <script type="text/javascript">
+
+        angular.module('myApp',['ngRoute'])
+        .controller('loginController',function ($scope){;
+            $scope.res = function (data){
+                console.log(data);
+            }
+            $scope.callback = {
+                login : function (data){
+                    if(data[0].length == 0){
+                        alert('아이디 혹은 패스워드를 찾을 수 없습니다.');
+                    }
+                    else {
+
+                    }
+                }
+            };
+       });
+    </script>
+    <script type="text/javascript" src="/scripts/app.js"></script>
+	<link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+	<div class="navbar navbar-default">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#menubar" aria-expanded="false">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar">
+					</span>
+					<span class="icon-bar">
+					</span>
+					<span class="icon-bar">
+					</span>
+
+				</button>
+				<a class="navbar-brand" href="#">Home</a>
+			</div>
+			<div class="collapse navbar-collapse" id="menubar">
+
+				<ul class="nav navbar-nav">
+                    <li><a href="#" data-toggle="modal" data-target="#loginModal">Login</a></li>
+                    <li class="active"><a>res</a></li>
+				</ul>
+
+			</div>
+		</div>
+	</div>
+
+    <div class="modal fade" id="loginModal" ng-controller="loginController">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title">Login</h4>
+                </div>
+                <div class="modal-body">
+                    <form id="frmLogin" response="callback.login(data)" rest-api="'/api/account/login'" method="post" novalidate>
+                        <span>아이디</span><input type="text" class="form-control input-small" name="id"/>
+                        <span>비밀번호</span><input type="password" class="form-control input-small" name="pw"/>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">취소</button>
+                    <button type="button" class="btn btn-primary" onclick="jQuery('#frmLogin').submit();">확인</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+	<div class="container" >
+
+	</div>
+</body>
+</html>
