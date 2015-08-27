@@ -16,7 +16,14 @@ var session = require('express-session');
 
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
-
+app.use(function (req,res,next){
+    var ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+    console.log(req.headers);
+    console.log(req.connection.remoteAddress);
+    console.log('ip ' + ip);
+    req.session.req_ip = ip;
+    next();
+});
 var loadApi = (function (dir){
     fs.readdir(dir,function (err,results){
         if(err) {
